@@ -73,30 +73,42 @@ stages:
 
           # 2) Download Publisher tool (platform-appropriate)
           - task: PowerShell@2
-            displayName: "Fetch Publisher tool"
+            displayName: 'Fetch API Ops Publisher (Windows zip)'
             inputs:
-              targetType: inline
+              targetType: 'inline'
+              pwsh: true
               script: |
                 Set-StrictMode -Version Latest
                 $ErrorActionPreference = "Stop"
+                $VerbosePreference = "Continue"
+                $InformationPreference = "Continue"
 
-                if ("$(Agent.OS)" -like "*win*") { $file = "publisher.win-x64.exe" }
-                elseif ("$(Agent.OS)" -like "*linux*") { $file = "publisher.linux-x64.exe" }
-                else { throw "Unsupported agent OS $(Agent.OS)" }
+                # Use a fixed version or parameterize via a variable if you prefer.
+                $apiopsVersion = 'v6.0.2'  # or "$(apiops_release_version)"
+                $downloadUrl   = "https://github.com/Azure/apiops/releases/download/v6.0.2/publisher-win-x64.zip"
+                $tempDir    = Join-Path $env:AGENT_TEMPDIRECTORY "apiops"
+                $zipPath    = Join-Path $tempDir "publisher.zip"
+                $extractDir = Join-Path $tempDir "publisher"
 
-                $uri = "https://github.com/Azure/apiops/releases/download/$(apiops_release_version)/$file"
-                $dst = Join-Path "$(Agent.TempDirectory)" "publisher.exe"
-                Write-Host "Downloading $uri ..."
-                Invoke-WebRequest -Uri $uri -OutFile $dst
+                Write-Information "Preparing temp directories at '$tempDir'..."
+                New-Item -ItemType Directory -Force -Path $tempDir | Out-Null
+                if (Test-Path $extractDir) { Remove-Item -Recurse -Force $extractDir }
+                New-Item -ItemType Directory -Force -Path $extractDir | Out-Null
 
-                if ("$(Agent.OS)" -like "*linux*") {
-                  & chmod +x "$dst"
-                  if ($LASTEXITCODE -ne 0) { throw "chmod failed" }
+                Write-Information "Downloading Publisher from: $downloadUrl"
+                Invoke-WebRequest -Uri $downloadUrl -OutFile $zipPath
+
+                Write-Information "Unzipping Publisher into '$extractDir'..."
+                Expand-Archive -Path $zipPath -DestinationPath $extractDir -Force
+
+                # Find the Publisher EXE in the unzipped content
+                $exe = Get-ChildItem -Path $extractDir -Recurse -File -Filter "publisher*.exe" | Select-Object -First 1
+                if (-not $exe) {
+                  throw "Publisher executable not found in '$extractDir'."
                 }
 
-                Write-Host "##vso[task.setvariable variable=PUBLISHER_EXE]$dst"
-              pwsh: true
-              failOnStderr: true
+                Write-Host "Publisher resolved to: $($exe.FullName)"
+                Write-Host "##vso[task.setvariable variable=PUBLISHER_EXE]$($exe.FullName)"
 
           # 3) (Optional) Replace tokens in configuration.qa.yaml (only if you use tokens like #{...}#)
           #    If you don't use tokens, you can remove this step.
