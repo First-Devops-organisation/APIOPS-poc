@@ -173,7 +173,7 @@ stages:
                 New-Item -Path "$temporaryFolderPath" -ItemType "Directory"
  
                 $branchName = "${{ parameters.TARGET_BRANCH_NAME }}"
-                $temporaryBranchName = "artifacts-from-portal-build-$(Build.BuildId)
+                $temporaryBranchName = "artifacts-from-portal-build-$(Build.BuildId)"
                 $repositoryName = "${{ parameters.APIM_REPOSITORY_NAME }}"
                 Write-Information "Cloning branch $branchName in repository $repositoryName..."
                 $cloneUrl = az repos show --repository "$repositoryName" --query "remoteUrl" --output tsv
