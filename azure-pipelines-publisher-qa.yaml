@@ -146,4 +146,3 @@ stages:
                 Write-Host "Publisher completed."
               pwsh: true
               failOnStderr: true
-``
