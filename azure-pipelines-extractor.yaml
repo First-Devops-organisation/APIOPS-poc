@@ -44,7 +44,7 @@ stages:
       - job: create_artifact_from_portal
         displayName: Create artifact from portal
         pool:
-          vmImage: ubuntu-latest
+          vmImage: windows-latest
         steps:
           - task: AzureCLI@2
             displayName: Set extraction variables
@@ -65,33 +65,53 @@ stages:
                 Write-Host "##vso[task.setvariable issecret=true;variable=AZURE_SUBSCRIPTION_ID]$(az account show --query "id" --output tsv)"
               addSpnToEnvironment: true
               failOnStandardError: true
+ 
           - task: PowerShell@2
-            displayName: Fetch extractor
+            displayName: 'Fetch API Ops extractor (Windows zip)'
             inputs:
-              targetType: "inline"
+              targetType: 'inline'
+              pwsh: true
               script: |
                 Set-StrictMode -Version Latest
                 $ErrorActionPreference = "Stop"
                 $VerbosePreference = "Continue"
                 $InformationPreference = "Continue"
- 
-                Write-Information "Downloading extractor..."
-                $extractorFileName = "$(Agent.OS)" -like "*win*" ? "extractor.win-x64.exe" : "extractor.linux-x64.exe"
-                $uri = "https://github.com/Azure/apiops/releases/download/$(apiops_release_version)/$extractorFileName"
-                $destinationFilePath = Join-Path "$(Agent.TempDirectory)" "extractor.exe"
-                Invoke-WebRequest -Uri "$uri" -OutFile "$destinationFilePath"
- 
-                if ("$(Agent.OS)" -like "*linux*")
-                {
-                  Write-Information "Setting file permissions..."
-                  & chmod +x "$destinationFilePath"
-                  if ($LASTEXITCODE -ne 0) { throw "Setting file permissions failed."}
+
+                # Use a fixed version or parameterize via a variable if you prefer.
+                $apiopsVersion = 'v6.0.2'  # or "$(apiops_release_version)"
+                $downloadUrl   = "https://github.com/Azure/apiops/releases/download/$apiopsVersion/extractor-win-x64.zip"
+                $tempDir       = Join-Path $env:AGENT_TEMPDIRECTORY "apiops"
+                $zipPath       = Join-Path $tempDir "extractor.zip"
+                $extractDir    = Join-Path $tempDir "extractor"
+
+                Write-Information "Preparing temp directories at '$tempDir'..."
+                New-Item -ItemType Directory -Force -Path $tempDir | Out-Null
+                if (Test-Path $extractDir) { Remove-Item -Recurse -Force $extractDir }
+                New-Item -ItemType Directory -Force -Path $extractDir | Out-Null
+
+                Write-Information "Downloading: $downloadUrl"
+                Invoke-WebRequest -Uri $downloadUrl -OutFile $zipPath
+
+                # Basic sanity check: ensure file is a zip (and not an HTML error page)
+                $fileSig = Get-Content -Path $zipPath -Encoding Byte -TotalCount 4
+                if (-not $fileSig -or $fileSig[0] -ne 80 -or $fileSig[1] -ne 75) {
+                  throw "Downloaded file does not look like a ZIP (might be an HTML error page). URL: $downloadUrl"
                 }
- 
-                Write-Host "##vso[task.setvariable variable=EXTRACTOR_FILE_PATH]$destinationFilePath"
-                Write-Information "Execution complete."
-              failOnStderr: true
-              pwsh: true
+
+                Write-Information "Unzipping to '$extractDir'..."
+                Expand-Archive -Path $zipPath -DestinationPath $extractDir -Force
+
+                # Find the extractor EXE in the unzipped content
+                $exe = Get-ChildItem -Path $extractDir -Recurse -File -Filter "extractor*.exe" | Select-Object -First 1
+                if (-not $exe) {
+                  throw "Extractor executable not found in '$extractDir'."
+                }
+
+                Write-Host "Extractor resolved to: $($exe.FullName)"
+                Write-Host "##vso[task.setvariable variable=EXTRACTOR_FILE_PATH]$($exe.FullName)"
+
+
+
           - task: PowerShell@2
             displayName: Run extractor
             inputs:
