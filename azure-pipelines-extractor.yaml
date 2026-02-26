@@ -92,12 +92,6 @@ stages:
                 Write-Information "Downloading: $downloadUrl"
                 Invoke-WebRequest -Uri $downloadUrl -OutFile $zipPath
 
-                # Basic sanity check: ensure file is a zip (and not an HTML error page)
-                $fileSig = Get-Content -Path $zipPath -Encoding Byte -TotalCount 4
-                if (-not $fileSig -or $fileSig[0] -ne 80 -or $fileSig[1] -ne 75) {
-                  throw "Downloaded file does not look like a ZIP (might be an HTML error page). URL: $downloadUrl"
-                }
-
                 Write-Information "Unzipping to '$extractDir'..."
                 Expand-Archive -Path $zipPath -DestinationPath $extractDir -Force
 
