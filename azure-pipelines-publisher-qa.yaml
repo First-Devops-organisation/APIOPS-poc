@@ -1,0 +1,149 @@
+
+trigger: none
+
+parameters:
+  - name: QA_APIM_NAME
+    type: string
+    displayName: QA APIM instance name
+  - name: QA_APIM_RG
+    type: string
+    displayName: QA APIM resource group
+  - name: ARTIFACTS_FOLDER
+    type: string
+    default: apim/dev                # Path (in repo) to the Dev-extracted artifacts
+    displayName: Artifacts folder (source of truth)
+  - name: CONFIGURATION_YAML_PATH
+    type: string
+    default: configuration.qa.yaml   # The environment override file for QA
+    displayName: Publisher configuration file path
+  - name: TARGET_BRANCH
+    type: string
+    default: main
+    displayName: Branch to run on
+  - name: USE_INCREMENTAL
+    type: boolean
+    default: false
+    displayName: Publish only changes in last commit (COMMIT_ID)
+  - name: COMMIT_ID
+    type: string
+    default: ""
+    displayName: Specific commit SHA (optional when USE_INCREMENTAL=true)
+
+variables:
+  - group: apim-automation         
+
+  - name: System.Debug
+    value: true
+
+stages:
+  - stage: publish_to_qa
+    displayName: Publish Dev artifacts to QA
+    condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+    jobs:
+      - job: run_publisher
+        displayName: Run APIOps Publisher
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - checkout: self
+            persistCredentials: true
+            clean: true
+
+          # 1) Acquire Azure auth context + capture as variables for the Publisher
+          - task: AzureCLI@2
+            displayName: "Login & set Publisher variables"
+            inputs:
+              azureSubscription: "$(SERVICE_CONNECTION_NAME)"
+              scriptType: pscore
+              scriptLocation: inlineScript
+              inlineScript: |
+                Set-StrictMode -Version Latest
+                $ErrorActionPreference = "Stop"
+
+                # Bearer token & subscription for ARM
+                $subId = az account show --query 'id' --output tsv
+                $token = az account get-access-token --query 'accessToken' --output tsv
+
+                Write-Host "##vso[task.setvariable issecret=true;variable=AZURE_SUBSCRIPTION_ID]$subId"
+                Write-Host "##vso[task.setvariable issecret=true;variable=AZURE_BEARER_TOKEN]$token"
+                Write-Host "##vso[task.setvariable issecret=true;variable=AZURE_RESOURCE_GROUP_NAME]${{ parameters.QA_APIM_RG }}"
+                Write-Host "##vso[task.setvariable issecret=true;variable=API_MANAGEMENT_SERVICE_NAME]${{ parameters.QA_APIM_NAME }}"
+
+              addSpnToEnvironment: true
+              failOnStandardError: false
+
+          # 2) Download Publisher tool (platform-appropriate)
+          - task: PowerShell@2
+            displayName: "Fetch Publisher tool"
+            inputs:
+              targetType: inline
+              script: |
+                Set-StrictMode -Version Latest
+                $ErrorActionPreference = "Stop"
+
+                if ("$(Agent.OS)" -like "*win*") { $file = "publisher.win-x64.exe" }
+                elseif ("$(Agent.OS)" -like "*linux*") { $file = "publisher.linux-x64.exe" }
+                else { throw "Unsupported agent OS $(Agent.OS)" }
+
+                $uri = "https://github.com/Azure/apiops/releases/download/$(apiops_release_version)/$file"
+                $dst = Join-Path "$(Agent.TempDirectory)" "publisher.exe"
+                Write-Host "Downloading $uri ..."
+                Invoke-WebRequest -Uri $uri -OutFile $dst
+
+                if ("$(Agent.OS)" -like "*linux*") {
+                  & chmod +x "$dst"
+                  if ($LASTEXITCODE -ne 0) { throw "chmod failed" }
+                }
+
+                Write-Host "##vso[task.setvariable variable=PUBLISHER_EXE]$dst"
+              pwsh: true
+              failOnStderr: true
+
+          # 3) (Optional) Replace tokens in configuration.qa.yaml (only if you use tokens like #{...}#)
+          #    If you don't use tokens, you can remove this step.
+          #    Note: This requires the "Replace Tokens" marketplace extension; otherwise skip.
+          # - task: qetza.replacetokens.replacetokens-task.replacetokens@5
+          #   displayName: "Replace tokens in configuration.qa.yaml"
+          #   inputs:
+          #     targetFiles: "${{ parameters.CONFIGURATION_YAML_PATH }}"
+          #     encoding: "auto"
+          #     tokenPattern: "octopus"   # #{VarName}#
+          #     writeBOM: true
+          #     actionOnMissing: "warn"
+
+          # 4) Run Publisher
+          - task: PowerShell@2
+            displayName: "Run Publisher (Dev → QA)"
+            inputs:
+              targetType: inline
+              script: |
+                Set-StrictMode -Version Latest
+                $ErrorActionPreference = "Stop"
+
+                $artifacts = Join-Path "$(Build.SourcesDirectory)" "${{ parameters.ARTIFACTS_FOLDER }}"
+                if (-not (Test-Path $artifacts)) { throw "Artifacts folder not found: $artifacts" }
+
+                Write-Host "Artifacts: $artifacts"
+                Write-Host "Config: ${{ parameters.CONFIGURATION_YAML_PATH }}"
+                Write-Host "Target APIM: $(API_MANAGEMENT_SERVICE_NAME) in RG $(AZURE_RESOURCE_GROUP_NAME)"
+                
+                $env:API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH = $artifacts
+                $env:CONFIGURATION_YAML_PATH = "$(Build.SourcesDirectory)/${{ parameters.CONFIGURATION_YAML_PATH }}"
+                $env:AZURE_SUBSCRIPTION_ID = "$(AZURE_SUBSCRIPTION_ID)"
+                $env:AZURE_RESOURCE_GROUP_NAME = "$(AZURE_RESOURCE_GROUP_NAME)"
+                $env:API_MANAGEMENT_SERVICE_NAME = "$(API_MANAGEMENT_SERVICE_NAME)"
+                $env:AZURE_BEARER_TOKEN = "$(AZURE_BEARER_TOKEN)"
+                $env:Logging__LogLevel__Default = "Information"
+
+                if ("${{ parameters.USE_INCREMENTAL }}" -eq "true" -and -not [string]::IsNullOrWhiteSpace("${{ parameters.COMMIT_ID }}")) {
+                  $env:COMMIT_ID = "${{ parameters.COMMIT_ID }}"
+                  Write-Host "Incremental publish for commit $env:COMMIT_ID"
+                }
+
+                & "$(PUBLISHER_EXE)"
+                if ($LASTEXITCODE -ne 0) { throw "Publisher failed with exit code $LASTEXITCODE" }
+
+                Write-Host "Publisher completed."
+              pwsh: true
+              failOnStderr: true
+``
