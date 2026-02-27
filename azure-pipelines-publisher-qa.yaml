@@ -152,8 +152,13 @@ stages:
                 }
 
                 & "$(PUBLISHER_EXE)"
-                if ($LASTEXITCODE -ne 0) { throw "Publisher failed with exit code $LASTEXITCODE" }
+                
+                $exit = $LASTEXITCODE  # safe now; a native process just ran
+                  if ($exit -ne 0) { throw "Publisher failed with exit code $exit" }
+                  Write-Host "Publisher completed."
 
-                Write-Host "Publisher completed."
+                # if ($LASTEXITCODE -ne 0) { throw "Publisher failed with exit code $LASTEXITCODE" }
+
+                # Write-Host "Publisher completed."
               pwsh: true
               failOnStderr: true
