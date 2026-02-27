@@ -33,8 +33,8 @@ steps:
  
       echo "=== az apim api list ==="
       az apim api list \
-        --name "dev-apim-yash-01" \
         --resource-group "RG-Serverless" \
+        --service-name "dev-apim-yash-01" \
         -o table
   env:
     AZURE_RESOURCE_GROUP_NAME: RG-Serverless
