@@ -1,6 +1,6 @@
 {
   "properties": {
-    "loggerId": "/subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless/providers/Microsoft.ApiManagement/service/dev-apim-yash-01/loggers/azuremonitor",
+    "loggerId": "/subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/Microsoft.ApiManagement/service/qa-apim-yash-01/loggers/azuremonitor",
     "backend": {
       "request": {
         "dataMasking": {
