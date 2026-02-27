@@ -154,21 +154,21 @@ stages:
                 if (-not (Test-Path -LiteralPath "$(PUBLISHER_EXE)")) { throw "Publisher not found: $(PUBLISHER_EXE)" }
                   if ($IsLinux -or $IsMacOS) { chmod +x -- "$(PUBLISHER_EXE)" 2>$null }
 
-                  # IMPORTANT: use the real call operator '&', not '&amp;'
-                  & "$(PUBLISHER_EXE)"
-                  $exit = $LASTEXITCODE  # safe now; a native process just ran
-                  if ($exit -ne 0) { throw "Publisher failed with exit code $exit" }
+                  # # IMPORTANT: use the real call operator '&', not '&amp;'
+                  # & "$(PUBLISHER_EXE)"
+                  # $exit = $LASTEXITCODE  # safe now; a native process just ran
+                  # if ($exit -ne 0) { throw "Publisher failed with exit code $exit" }
 
-                  Write-Host "Publisher completed."
+                  # Write-Host "Publisher completed."
 
-                # & "$(PUBLISHER_EXE)"
+                & "$(PUBLISHER_EXE)"
                 
                 # $exit = $LASTEXITCODE  # safe now; a native process just ran
                 #   if ($exit -ne 0) { throw "Publisher failed with exit code $exit" }
                 #   Write-Host "Publisher completed."
 
-                # if ($LASTEXITCODE -ne 0) { throw "Publisher failed with exit code $LASTEXITCODE" }
+                if ($LASTEXITCODE -ne 0) { throw "Publisher failed with exit code $LASTEXITCODE" }
 
-                # Write-Host "Publisher completed."
+                Write-Host "Publisher completed."
               pwsh: true
               failOnStderr: true
