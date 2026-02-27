@@ -1,1 +1,22 @@
-...
+apiNames:
+  - "apim-poc-1"
+  - "echo-api"
+ 
+backendNames:
+  - "apim-poc-1"
+ 
+namedValueNames:
+  - "apim-poc-1-key"
+  - "TestNamed"
+ 
+loggerNames:
+  - "app-insights-01"
+ 
+diagnosticNames:
+  - "applicationinsights"
+ 
+productNames:
+  - "Footwear"
+
+policyFragmentNames:
+  - "testapimfrag"
