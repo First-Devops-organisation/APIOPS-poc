@@ -1,0 +1,39 @@
+openapi: 3.0.1
+info:
+  title: Hello World API
+  description: A simple API that returns a greeting.
+  version: '1.0'
+servers:
+  - url: https://dev-apim-yash-01.azure-api.net
+paths:
+  /hello:
+    get:
+      summary: Returns a greeting
+      description: Returns a greeting
+      operationId: getGreeting
+      responses:
+        '200':
+          description: A successful response with a greeting
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Hello, world!'
+              example:
+                message: 'Hello, world!'
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]
