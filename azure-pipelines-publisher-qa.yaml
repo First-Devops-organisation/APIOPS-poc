@@ -42,7 +42,7 @@ stages:
       - job: run_publisher
         displayName: Run APIOps Publisher
         pool:
-          vmImage: ubuntu-latest
+          vmImage: windows-latest
         steps:
           - checkout: self
             persistCredentials: true
