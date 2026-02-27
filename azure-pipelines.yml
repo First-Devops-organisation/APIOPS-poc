@@ -1,0 +1,42 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- task: AzureCLI@2
+  displayName: "Diagnose: list APIs via service connection (Bash)"
+  inputs:
+    azureSubscription: "yash-apiops-conn"
+    scriptType: bash
+    scriptLocation: inlineScript
+    inlineScript: |
+      set -e
+ 
+      echo "=== az account show ==="
+      az account show -o table
+ 
+      echo "=== az apim show ==="
+      az apim show \
+        --name "dev-apim-yash-01" \
+        --resource-group "RG-Serverless" \
+        -o table
+ 
+      echo "=== az apim api list ==="
+      az apim api list \
+        --name "dev-apim-yash-01" \
+        --resource-group "RG-Serverless" \
+        -o table
+  env:
+    AZURE_RESOURCE_GROUP_NAME: RG-Serverless
+    API_MANAGEMENT_SERVICE_NAME: dev-apim-yash-01
+ 
