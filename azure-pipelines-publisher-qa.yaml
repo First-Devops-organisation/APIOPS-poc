@@ -151,11 +151,21 @@ stages:
                   Write-Host "Incremental publish for commit $env:COMMIT_ID"
                 }
 
-                & "$(PUBLISHER_EXE)"
-                
-                $exit = $LASTEXITCODE  # safe now; a native process just ran
+                if (-not (Test-Path -LiteralPath "$(PUBLISHER_EXE)")) { throw "Publisher not found: $(PUBLISHER_EXE)" }
+                  if ($IsLinux -or $IsMacOS) { chmod +x -- "$(PUBLISHER_EXE)" 2>$null }
+
+                  # IMPORTANT: use the real call operator '&', not '&amp;'
+                  & "$(PUBLISHER_EXE)"
+                  $exit = $LASTEXITCODE  # safe now; a native process just ran
                   if ($exit -ne 0) { throw "Publisher failed with exit code $exit" }
+
                   Write-Host "Publisher completed."
+
+                # & "$(PUBLISHER_EXE)"
+                
+                # $exit = $LASTEXITCODE  # safe now; a native process just ran
+                #   if ($exit -ne 0) { throw "Publisher failed with exit code $exit" }
+                #   Write-Host "Publisher completed."
 
                 # if ($LASTEXITCODE -ne 0) { throw "Publisher failed with exit code $LASTEXITCODE" }
 
