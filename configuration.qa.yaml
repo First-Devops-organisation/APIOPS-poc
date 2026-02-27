@@ -1,54 +1,6 @@
-apimServiceName: apim-qa-yourinstance
- 
+apimServiceName: qa-apim-yash-01
 namedValues:
-  - name: Environment
-    properties:
-      displayName: Environment
-      value: "QA"
-  - name: OrdersApiUrl
-    properties:
-      displayName: OrdersApiUrl
-      value: "https://"
-  - name: BillingApiUrl
-    properties:
-      displayName: BillingApiUrl
-      value: "https://"
-  # Example of Key Vault-backed secret override (recommended for secrets)
-  - name: AppInsightsKey
-    properties:
-      displayName: AppInsightsKey
-      keyVault:
-        identityClientId: "<managed-identity-client-id-if-user-assigned>"
-        secretIdentifier: "https://kv-your-qa.vault.azure.net/secrets/AppInsightsKey/<version>"
- 
 loggers:
-  - name: appinsights-logger
-    properties:
-      loggerType: applicationInsights
-      description: "QA Application Insights"
-      resourceId: "/subscriptions/<subId>/resourceGroups/rg-qa/providers/microsoft.insights/components/appi-qa"
-      credentials:
-        instrumentationKey: "{{AppInsightsKey}}"
-      isBuffered: true
- 
 diagnostics:
-  - name: applicationinsights
-    properties:
-      verbosity: Error
-      loggerId: "/subscriptions/<subId>/resourceGroups/rg-qa/providers/Microsoft.ApiManagement/service/apim-qa-yourinstance/loggers/appinsights-logger"
- 
 backends:
-  - name: orders-backend
-    properties:
-      url: "https://orders-qa.api.contoso.com"
-  - name: billing-backend
-    properties:
-      url: "https://billing-qa.api.contoso.com"
- 
 apis:
-  - name: orders-api
-    diagnostics:
-      - name: applicationinsights
-        properties:
-          verbosity: Error
-          loggerId: "/subscriptions/<subId>/resourceGroups/rg-qa/providers/Microsoft.ApiManagement/service/apim-qa-yourinstance/loggers/appinsights-logger"
