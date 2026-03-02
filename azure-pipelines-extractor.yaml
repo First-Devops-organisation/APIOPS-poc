@@ -20,7 +20,7 @@ parameters:
     displayName: Optional configuration file
     values:
       - Extract All
-      # - configuration.extractor.yaml
+      - configuration.extractor.yaml
   - name: API_SPECIFICATION_FORMAT
     type: string
     displayName: API Specification Format
