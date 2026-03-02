@@ -1,14 +1,13 @@
 apiNames:
-  # - "apim-poc-1"
-  # - "echo-api"
-  # - "hello-world-api"
+  - "apim-poc-1"
+  - "echo-api"
+  - "hello-world-api"
  
 backendNames:
-  # - "apim-poc-1"
+  - "apim-poc-1"
  
 namedValueNames:
-  # - "apim-poc-1-key"
-  # - "TestNamed"
+  - "apim-poc-1-key"
  
 loggerNames:
   # - "app-insights-01"
