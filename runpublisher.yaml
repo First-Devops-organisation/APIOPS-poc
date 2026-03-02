@@ -1,0 +1,120 @@
+trigger:
+  branches:
+    include:
+      - dev
+  paths:
+    exclude:
+    - tools/*
+
+parameters:
+  - name: API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH
+    type: string
+    displayName: Folder where the artifacts reside
+    default: "artifacts"
+  - name: COMMIT_ID
+    type: string
+    displayName: Choose "publish-all-artifacts-in-repo" only when you want to force republishing all artifacts (e.g. after build failure). Otherwise stick with the default behavior of "publish-artifacts-in-last-commit"
+    default: publish-all-artifacts-in-repo
+    values:
+      - publish-all-artifacts-in-repo
+
+variables:
+  - group: apim-automation
+  - name: System.Debug
+    value: true
+
+stages:
+  - stage: push_changes_to_Dev_APIM
+    displayName: Push changes to Dev APIM
+    jobs:
+      - job: push_changes_to_Dev_APIM
+        displayName: Push changes to Dev APIM
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - template: run-publisher-with-env.yaml
+            parameters:
+              API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH: ${{ parameters.API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH }}
+              RESOURCE_GROUP_NAME : $(RESOURCE_GROUP_NAME)
+              API_MANAGEMENT_SERVICE_NAME : $(APIM_NAME)
+              ENVIRONMENT: "DEV"
+              COMMIT_ID: ${{ parameters.COMMIT_ID }}
+              AZURE_SUBSCRIPTION_ID_OVERRIDE: $(AZURE_SUBSCRIPTION_ID)
+
+  - stage: push_changes_to_QA_APIM
+    displayName: Push changes to QA APIM
+    jobs:
+      - deployment: push_changes_to_QA_APIM
+        displayName: Push changes to QA APIM
+#        variables:
+          # #setting the testSecretValue to the qa resource group name as an example
+          # testSecretValue: $(RESOURCE_GROUP_NAME_Prod)
+        pool:
+          vmImage: ubuntu-latest
+        # creates an environment if it doesn't exist
+        environment: 'QA'
+        strategy:
+          # default deployment strategy, more coming...
+          runOnce:
+            deploy:
+               steps:
+                 - template: run-publisher-with-env.yaml
+                   parameters:
+                     API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH: ${{ parameters.API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH }}
+                     RESOURCE_GROUP_NAME : $(RESOURCE_GROUP_NAME_QA)
+                     CONFIGURATION_YAML_PATH:  $(Build.SourcesDirectory)/configuration.qa.yaml
+                     ENVIRONMENT: "QA"
+                     COMMIT_ID: ${{ parameters.COMMIT_ID }}
+                     AZURE_SUBSCRIPTION_ID_OVERRIDE: $(AZURE_SUBSCRIPTION_ID)
+
+  - stage: push_changes_to_UAT_APIM
+    displayName: Push changes to UAT APIM
+    jobs:
+      - deployment: push_changes_to_UAT_APIM
+        displayName: Push changes to UAT APIM
+#        variables:
+          # #setting the testSecretValue to the qa resource group name as an example
+          # testSecretValue: $(RESOURCE_GROUP_NAME_Prod)
+        pool:
+          vmImage: ubuntu-latest
+        # creates an environment if it doesn't exist
+        environment: 'UAT'
+        strategy:
+          # default deployment strategy, more coming...
+          runOnce:
+            deploy:
+               steps:
+                 - template: run-publisher-with-env.yaml
+                   parameters:
+                     API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH: ${{ parameters.API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH }}
+                     RESOURCE_GROUP_NAME : $(RESOURCE_GROUP_NAME_UAT)
+                     CONFIGURATION_YAML_PATH:  $(Build.SourcesDirectory)/configuration.uat.yaml
+                     ENVIRONMENT: "UAT"
+                     COMMIT_ID: ${{ parameters.COMMIT_ID }}
+                     AZURE_SUBSCRIPTION_ID_OVERRIDE: $(AZURE_SUBSCRIPTION_ID)
+
+  - stage: push_changes_to_PROD_APIM
+    displayName: Push changes to PROD APIM
+    jobs:
+      - deployment: push_changes_to_PROD_APIM
+        displayName: Push changes to PROD APIM
+        variables:
+          #setting the testSecretValue to the prod resource group name as an example
+          testSecretValue: $(RESOURCE_GROUP_NAME_PROD)
+        pool:
+          vmImage: ubuntu-latest
+        # creates an environment if it doesn't exist
+        environment: 'PROD'
+        strategy:
+          # default deployment strategy, more coming...
+          runOnce:
+            deploy:
+               steps:
+                 - template: run-publisher-with-env.yaml
+                   parameters:
+                     API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH: ${{ parameters.API_MANAGEMENT_SERVICE_OUTPUT_FOLDER_PATH }}
+                     RESOURCE_GROUP_NAME : $(RESOURCE_GROUP_NAME_PROD)
+                     CONFIGURATION_YAML_PATH:  $(Build.SourcesDirectory)/configuration.prod.yaml
+                     ENVIRONMENT: "PROD"
+                     COMMIT_ID: ${{ parameters.COMMIT_ID }}
+                     AZURE_SUBSCRIPTION_ID_OVERRIDE: $(PROD_AZURE_SUBSCRIPTION_ID)
