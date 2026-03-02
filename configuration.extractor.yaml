@@ -1,7 +1,5 @@
 apiNames:
   - "apim-poc-1"
-  - "echo-api"
-  - "hello-world"
  
 backendNames:
   - "apim-poc-1"
