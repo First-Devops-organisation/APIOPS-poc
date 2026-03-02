@@ -23,6 +23,9 @@ parameters:
     type: string
     displayName: Azure Subscription ID Override
 
+variables:
+- group: apim-automation
+
 steps:
   - script: echo Provided configuration was ${{ parameters.CONFIGURATION_YAML_PATH }}
     displayName: Print the name of the yaml configuration file if provided
