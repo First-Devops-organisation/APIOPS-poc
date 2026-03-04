@@ -6,22 +6,16 @@ namedValues:
       displayName: AppInsightsKeyQA
       secret: true
       value: "{#APPINSIGHTS_KEY_QA#}"
-
-  # Example: environment-specific URL override (optional)
-  - name: environment
-    properties:
-      displayName: environment
-      value: "{#QA_ENVIRONMENT_URL#}"
 loggers:
-  - name: app-insights-logger   # MUST MATCH the logger name extracted from Dev
-    properties:
-      loggerType: applicationInsights
-      description: "QA Application Insights"
-      resourceId: "/subscriptions/{#QA_SUBSCRIPTION_ID#}/resourceGroups/RG-Serverless1/providers/microsoft.insights/components/app-insights-02"
-      credentials:
-        # IMPORTANT: App Insights Logger MUST reference the Named Value using APIM syntax
-        instrumentationKey: "{#AppInsightsKeyQA#}"
-      isBuffered: true
+  # - name: app-insights-logger   # MUST MATCH the logger name extracted from Dev
+  #   properties:
+  #     loggerType: applicationInsights
+  #     description: "QA Application Insights"
+  #     resourceId: "/subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/microsoft.insights/components/app-insights-02"
+  #     credentials:
+  #       # IMPORTANT: App Insights Logger MUST reference the Named Value using APIM syntax
+  #       instrumentationKey: "{#AppInsightsKeyQA#}"
+  #     isBuffered: true
 diagnostics:
 backends:
 apis:
