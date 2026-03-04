@@ -1,4 +1,4 @@
-apimServiceName: qa-apim-yash-01
+apimServiceName: qa-apim-yash01
 namedValues:
 loggers:
 diagnostics:
