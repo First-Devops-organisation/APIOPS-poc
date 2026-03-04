@@ -4,8 +4,7 @@ namedValues:
     properties:
       displayName: "APPINSIGHTS_KEY_QA"
       secret: true
-      value: "{#AppInsightsKey#}"
-
+      value: "{{AppInsightsKey}}"
 loggers:
   - name: appinsights-logger
     properties:
