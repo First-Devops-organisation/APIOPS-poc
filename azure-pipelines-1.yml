@@ -21,5 +21,5 @@ steps:
     inlineScript: |
       az account show --query "{name:name,id:id}" -o table
       az group show -n RG-Serverless1 -o table
-      az apim show -g RG-Serverless1 -n qa-apim-yash-01 -o table
+      az apim show -g RG-Serverless1 -n qa-apim-yash01 -o table
 
