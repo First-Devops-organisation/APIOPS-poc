@@ -1,14 +1,14 @@
 {
   "properties": {
-    "path": "apim-poc-1",
+    "path": "echo",
     "apiRevision": "1",
     "authenticationSettings": {},
-    "description": "Import from \u0022apim-poc-1\u0022 Function App",
     "isCurrent": true,
-    "displayName": "apim-poc-1",
+    "displayName": "Echo API",
     "protocols": [
       "https"
     ],
+    "serviceUrl": "https://echo.playground.azure-api.net/api",
     "subscriptionKeyParameterNames": {
       "header": "Ocp-Apim-Subscription-Key",
       "query": "subscription-key"
