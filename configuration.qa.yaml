@@ -2,9 +2,9 @@ apimServiceName: qa-apim-yash01
 namedValues:
 loggers:
 diagnostics:
-  - name: applicationinsights
-    properties:
-      verbosity: Error
-      loggerId: "/subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/Microsoft.ApiManagement/service/qa-apim-yash01/loggers/app-insights-02"
+  # - name: applicationinsights
+  #   properties:
+  #     verbosity: Error
+  #     loggerId: "/subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/Microsoft.ApiManagement/service/qa-apim-yash01/loggers/app-insights-02"
 backends:
 apis:
