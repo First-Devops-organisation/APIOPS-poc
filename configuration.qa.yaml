@@ -1,6 +1,6 @@
 apimServiceName: qa-apim-yash01
 namedValues:
-  - name: apim-poc-1-key1
+  - name: apim-poc-1-key
     properties:
       value: "ZI+bZkRPtNxLxByuw3WprO51azI9bvovwn/mFMqD1KKlI8SFTitKDA=="
 loggers:
