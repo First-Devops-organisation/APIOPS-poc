@@ -1,0 +1,9 @@
+{
+  "properties": {
+    "displayName": "sub",
+    "description": "sssa",
+    "approvalRequired": false,
+    "state": "notPublished",
+    "subscriptionRequired": true
+  }
+}
