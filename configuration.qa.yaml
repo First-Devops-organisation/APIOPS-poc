@@ -17,5 +17,5 @@ loggers:
 backends:
   - name: apim-poc-2
     properties:
-      url: "apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net"
+      url: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net"
 # apis:
