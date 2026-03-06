@@ -1,0 +1,9 @@
+{
+  "properties": {
+    "displayName": "footwear",
+    "description": "test",
+    "approvalRequired": false,
+    "state": "notPublished",
+    "subscriptionRequired": true
+  }
+}
