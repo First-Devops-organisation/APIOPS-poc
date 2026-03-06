@@ -13,8 +13,8 @@ loggers:
         instrumentationKey: "3995e52e-687f-453b-8f9c-df1ef605c4de"
       isBuffered: true
 # diagnostics:
-# backends:
-#   - name: apim-poc-2
-#     properties:
-#       url: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net"
+backends:
+  - name: apim-poc-2
+    properties:
+      url: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net"
 # apis:
