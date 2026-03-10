@@ -1,11 +1,11 @@
 apimServiceName: qa-apim-yash01
 namedValues:
-  - name: apim-poc-1-key dev-test-apim-nv
+  - name: apim-poc-1-key 
     properties:
       value: "qa"
-  - name: dev-test-apim-nv
-    properties:
-      value: "ttttt"
+  # - name: dev-test-apim-nv
+  #   properties:
+  #     value: "ttttt"
 # loggers:
 #   - name: app-insights-01            # MUST match the Dev logger name extracted
 #     properties:
