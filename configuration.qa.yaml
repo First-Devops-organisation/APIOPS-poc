@@ -1,4 +1,4 @@
-apimServiceName: qa-apim-yash01
+apimServiceName: qa-apim-016
 namedValues:
   - name: apim-poc-1-key 
     properties:
