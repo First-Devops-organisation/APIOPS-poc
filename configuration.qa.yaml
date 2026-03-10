@@ -6,15 +6,15 @@ namedValues:
   # - name: dev-test-apim-nv
   #   properties:
   #     value: "ttttt"
-# loggers:
-#   - name: app-insights-01            # MUST match the Dev logger name extracted
-#     properties:
-#       loggerType: applicationInsights
-#       description: "QA Application Insights"
-#       resourceId: "/subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/microsoft.insights/components/app-insights-01"
-#       credentials:
-#         instrumentationKey: "3995e52e-687f-453b-8f9c-df1ef605c4de"
-#       isBuffered: true
+loggers:
+  - name: app-insights-01            # MUST match the Dev logger name extracted
+    properties:
+      loggerType: applicationInsights
+      description: "QA Application Insights"
+      resourceId: "/subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/microsoft.insights/components/app-insights-01"
+      credentials:
+        instrumentationKey: "3995e52e-687f-453b-8f9c-df1ef605c4de"
+      isBuffered: true
 # diagnostics:
 backends:
   - name: apim-poc-2
