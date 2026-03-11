@@ -36,3 +36,7 @@ apis:
     serviceUrl: "https://qa-apim-rr-01.developer.azure-api.net"
     protocols:
       - https
+    import:
+      format: openapi
+      url: "./apis/apimpoc-1/specification.yaml"
+ 
