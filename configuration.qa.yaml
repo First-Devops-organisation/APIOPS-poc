@@ -3,6 +3,13 @@ namedValues:
   - name: apim-poc-1-key 
     properties:
       value: "qa"
+
+
+  - name: qa-test
+    properties:
+      secret: true
+      keyVault:
+        secretIdentifier: "https://qa-apim-01.vault.azure.net/secrets/testapim"
   # - name: dev-test-apim-nv
   #   properties:
   #     value: "ttttt"
