@@ -36,7 +36,3 @@ apis:
     serviceUrl: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net"
     protocols:
       - https
-    import:
-      format: openapi
-      url: "./apis/apim-poc-1/specification.yaml"
- 
