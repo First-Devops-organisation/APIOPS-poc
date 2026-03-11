@@ -30,4 +30,9 @@ backends:
       url: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net"
 apis:
   - name: apim-poc-1
-  - name:  hello-world-api
+    displayName: apim-poc-1
+    description: "Orders QA API"
+    path: orders
+    serviceUrl: "https://qa-apim-rr-01.developer.azure-api.net"
+    protocols:
+      - https
