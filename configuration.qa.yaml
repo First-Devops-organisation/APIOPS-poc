@@ -33,7 +33,7 @@ apis:
     displayName: apim-poc-1
     description: "Orders QA API"
     path: orders
-    serviceUrl: "https://qa-apim-rr-01.azure-api.net/apim-poc-1"
+    serviceUrl: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net"
     protocols:
       - https
     import:
