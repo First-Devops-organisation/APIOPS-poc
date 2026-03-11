@@ -1,6 +1,6 @@
 apimServiceName: qa-apim-rr-01
 namedValues:
-  - name: apim-poc-1-key 
+  - name: apim-poc-1-key1
     properties:
       value: "qa"
 
