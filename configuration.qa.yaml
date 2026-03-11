@@ -28,11 +28,11 @@ backends:
   - name: apim-poc-1
     properties:
       url: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net"
-apis:
-  - name: apim-poc-1
-    displayName: apim-poc-1
-    description: "Orders QA API"
-    path: orders
-    serviceUrl: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net"
-    protocols:
-      - https
+# apis:
+#   - name: apim-poc-1
+#     displayName: apim-poc-1
+#     description: "Orders QA API"
+#     path: orders
+#     serviceUrl: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net"
+#     protocols:
+#       - https
