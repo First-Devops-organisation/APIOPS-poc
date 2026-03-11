@@ -1,6 +1,6 @@
 {
   "properties": {
-    "displayName": "apim-poc-1-key1",
+    "displayName": "apim-poc-1-key",
     "secret": true,
     "tags": [
       "key",
