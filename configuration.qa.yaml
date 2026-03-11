@@ -38,5 +38,5 @@ apis:
       - https
     import:
       format: openapi
-      url: "./apis/apimpoc-1/specification.yaml"
+      url: "./apis/apim-poc-1/specification.yaml"
  
