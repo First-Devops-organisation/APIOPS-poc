@@ -30,9 +30,36 @@ backends:
       url: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net"
 
 apis:
- - name: apim-poc-1
-   properties:
-     serviceUrl: "https://qaapim.azure-api.net"
+  - name: apim-poc-1
+    properties:
+      displayName: "apim-poc-1"
+      path: "apim-poc-1"
+      protocols:
+        - https
+      # Leave serviceUrl unset when using <set-backend-service backend-id="...">
+    policies:
+      inbound: |
+        <policies>
+          <!-- Throttle, authorize, validate, cache, or transform the requests -->
+          <inbound>
+            <base />
+            <!-- Route to the QA backend via backend entity -->
+            <set-backend-service base-url="https://qa-apim-rr-01.azure-api.net/apim-poc-1" />
+            <set-backend-service backend-id="apim-poc-1" />
+          </inbound>
+          <!-- Control if and how the requests are forwarded to services -->
+          <backend>
+            <base />
+          </backend>
+          <!-- Customize the responses -->
+          <outbound>
+            <base />
+          </outbound>
+          <!-- Handle exceptions and customize error responses -->
+          <on-error>
+            <base />
+          </on-error>
+        </policies>
 
 # apis:
 #   - name: apim-poc-1
