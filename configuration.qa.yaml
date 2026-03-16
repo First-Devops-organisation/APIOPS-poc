@@ -11,6 +11,11 @@ namedValues:
       keyVault:
         secretIdentifier: "https://qa-apim-01.vault.azure.net/secrets/testapim"
 
+  - name: backend-url
+    properties:
+      displayName: backend-url
+      value: https://qa-apim-apiops-01.azure-api.net/apim-poc-1
+
   # - name: dev-test-apim-nv
   #   properties:
   #     value: "ttttt"
