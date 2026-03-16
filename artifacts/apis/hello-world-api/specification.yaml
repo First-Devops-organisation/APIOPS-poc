@@ -4,7 +4,7 @@ info:
   description: A simple API that returns a greeting.
   version: '1.0'
 servers:
-  - url: https://dev-apim-rr-01.azure-api.net
+  - url: https://dev-apim-apiops-01.azure-api.net
 paths:
   /hello:
     get:

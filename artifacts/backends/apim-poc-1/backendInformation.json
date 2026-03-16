@@ -9,7 +9,7 @@
     },
     "description": "apim-poc-1",
     "protocol": "http",
-    "resourceId": "https://management.azure.com/subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/Microsoft.Web/sites/apim-poc-2",
-    "url": "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net/api"
+    "resourceId": "https://management.azure.com/subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless/providers/Microsoft.Web/sites/apim-poc-1",
+    "url": "https://apim-poc-1-f2atc3euhkfmgzcx.canadacentral-01.azurewebsites.net/api"
   }
 }
