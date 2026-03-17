@@ -16,7 +16,6 @@ namedValues:
       displayName: apimvar
       value: https://qa-apim-apiops-01.azure-api.net/apim-poc-2
 
-apimfunc
   - name: apimfunc
     properties:
       displayName: apimfuncurl
