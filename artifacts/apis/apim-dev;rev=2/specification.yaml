@@ -1,10 +1,10 @@
 openapi: 3.0.1
 info:
-  title: apim-poc-1
+  title: apim-dev
   description: Import from "apim-poc-1" Function App
   version: '1.0'
 servers:
-  - url: https://dev-apim-apiops-01.azure-api.net/apim-poc-1
+  - url: https://dev-apim-apiops-01.azure-api.net/apim-dev
 paths:
   /MyHttpFunction:
     get:

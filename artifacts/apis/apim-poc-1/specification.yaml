@@ -9,14 +9,12 @@ paths:
   /MyHttpFunction:
     get:
       summary: MyHttpFunction
-      description: MyHttpFunction
       operationId: get-myhttpfunction
       responses:
         '200':
           description: ''
     post:
       summary: MyHttpFunction
-      description: MyHttpFunction
       operationId: post-myhttpfunction
       responses:
         '200':
