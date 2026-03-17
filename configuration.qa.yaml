@@ -11,10 +11,10 @@ namedValues:
       keyVault:
         secretIdentifier: "https://qa-apim-apiops-01.vault.azure.net/secrets/testapim"
 
-  - name: functionappname
+  - name: newtest
     properties:
-      displayName: functionappname
-      value: apim-poc-2
+      displayName: newtest
+      value: https://qa-apim-apiops-01.azure-api.net/api-suff
 
   - name: apimvar
     properties:
