@@ -14,12 +14,12 @@ namedValues:
   - name: apimvar
     properties:
       displayName: apimvar
-      value: https://qa-apim-apiops-01.azure-api.net/apim-poc-2
+      value: https://qa-apim-apiops-01.azure-api.net/apim-poc-1
 
   - name: apimfunc
     properties:
       displayName: apimfuncurl
-      value: https://qa-apim-apiops-01.azure-api.net/apim-poc-2
+      value: https://qa-apim-apiops-01.azure-api.net/apim-poc-1
 
 
   # - name: dev-test-apim-nv
