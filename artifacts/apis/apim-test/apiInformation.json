@@ -1,14 +1,14 @@
 {
   "properties": {
-    "path": "apim-poc-1",
-    "apiRevision": "2",
+    "path": "apim-suffix",
+    "apiRevision": "1",
     "authenticationSettings": {},
     "description": "Import from \u0022apim-poc-1\u0022 Function App",
-    "displayName": "apim-poc-1",
+    "isCurrent": true,
+    "displayName": "apim-test",
     "protocols": [
       "https"
     ],
-    "serviceUrl": "https://dev-apim-apiops-01.azure-api.net/apim-poc-1",
     "subscriptionKeyParameterNames": {
       "header": "Ocp-Apim-Subscription-Key",
       "query": "subscription-key"
