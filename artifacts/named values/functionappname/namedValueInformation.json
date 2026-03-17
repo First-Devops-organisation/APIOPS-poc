@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "displayName": "functionappname",
+    "secret": false,
+    "tags": [],
+    "value": "apim-poc-1"
+  }
+}
