@@ -1,21 +1,21 @@
 openapi: 3.0.1
 info:
-  title: apim-test
+  title: api-test
   description: Import from "apim-poc-1" Function App
   version: '1.0'
 servers:
-  - url: https://dev-apim-apiops-01.azure-api.net/apim-suffix
+  - url: https://dev-apim-apiops-01.azure-api.net/api-suffix
 paths:
   /MyHttpFunction:
-    get:
-      summary: MyHttpFunction
-      operationId: get-myhttpfunction
-      responses:
-        '200':
-          description: ''
     post:
       summary: MyHttpFunction
       operationId: post-myhttpfunction
+      responses:
+        '200':
+          description: ''
+    get:
+      summary: MyHttpFunction
+      operationId: get-myhttpfunction
       responses:
         '200':
           description: ''
