@@ -55,7 +55,7 @@ apis:
           <inbound>
             <base />
             <!-- Route to the QA backend via backend entity -->
-            <set-backend-service backend-id="apim-poc-1" />
+            <set-backend-service backend-id="apim-poc-2" />
           </inbound>
           <!-- Control if and how the requests are forwarded to services -->
           <backend>
