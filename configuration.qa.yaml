@@ -19,7 +19,7 @@ namedValues:
   - name: apimvar
     properties:
       displayName: apimvar
-      value: https://qa-apim-apiops-01.azure-api.net/api-suff
+      value: https://qa-apim-apiops-01.azure-api.net/apim-poc-2
 
   - name: apimfunc
     properties:
