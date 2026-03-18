@@ -1,15 +1,14 @@
 {
   "properties": {
-    "path": "api-suff",
+    "path": "apim-two-suffix",
     "apiRevision": "1",
     "authenticationSettings": {},
     "description": "Import from \u0022apim-poc-1\u0022 Function App",
     "isCurrent": true,
-    "displayName": "api-tt",
+    "displayName": "apim-two",
     "protocols": [
       "https"
     ],
-    "serviceUrl": "https://dev-apim-apiops-01.azure-api.net/api-suff",
     "subscriptionKeyParameterNames": {
       "header": "Ocp-Apim-Subscription-Key",
       "query": "subscription-key"

@@ -1,0 +1,47 @@
+openapi: 3.0.1
+info:
+  title: api-one
+  description: Import from "apim-poc-1" Function App
+  version: '1.0'
+servers:
+  - url: https://dev-apim-apiops-01.azure-api.net/apim-one-suffix
+paths:
+  /MyHttpFunction:
+    get:
+      summary: MyHttpFunction
+      operationId: get-myhttpfunction
+      responses:
+        '200':
+          description: ''
+    post:
+      summary: MyHttpFunction
+      operationId: post-myhttpfunction
+      responses:
+        '200':
+          description: ''
+  /MyHttpFunction-1:
+    get:
+      summary: MyHttpFunction-1
+      operationId: get-myhttpfunction-1
+      responses:
+        '200':
+          description: ''
+    post:
+      summary: MyHttpFunction-1
+      operationId: post-myhttpfunction-1
+      responses:
+        '200':
+          description: ''
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]

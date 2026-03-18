@@ -3,6 +3,6 @@
     "displayName": "newtest",
     "secret": false,
     "tags": [],
-    "value": "https://dev-apim-apiops-01.azure-api.net/api-suff"
+    "value": "https://dev-apim-apiops-01.azure-api.net/apim-poc-1"
   }
 }
