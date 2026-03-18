@@ -14,7 +14,7 @@ namedValues:
   - name: newtest
     properties:
       displayName: newtest
-      value: https://qa-apim-apiops-01.azure-api.net/api-suff
+      value: https://qa-apim-apiops-01.azure-api.net/apim-poc-2
 
   - name: apimvar
     properties:
@@ -44,7 +44,12 @@ backends:
   - name: apim-poc-1
     properties:
       url: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net/api"
+      resourceId: /subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/Microsoft.Web/sites/apim-poc-2
 
+apis:
+  - name: api-tt # The API ID in APIM
+    properties:
+      serviceUrl: https://qa-apim-apiops-01.azure-api.net/apim-poc-2  # The QA Backend URL
 # apis:
 #   - name: apim-poc-1
 #     properties:
