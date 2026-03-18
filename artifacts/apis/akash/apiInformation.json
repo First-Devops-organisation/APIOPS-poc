@@ -1,6 +1,6 @@
 {
   "properties": {
-    "path": "ak-suffix",
+    "path": "akash-suffix",
     "apiRevision": "1",
     "authenticationSettings": {},
     "description": "Import from \u0022apim-poc-1\u0022 Function App",
@@ -9,7 +9,6 @@
     "protocols": [
       "https"
     ],
-    "serviceUrl": "https://dev-apim-apiops-01.azure-api.net/ak-suffix",
     "subscriptionKeyParameterNames": {
       "header": "Ocp-Apim-Subscription-Key",
       "query": "subscription-key"

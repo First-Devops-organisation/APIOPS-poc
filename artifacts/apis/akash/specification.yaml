@@ -4,20 +4,18 @@ info:
   description: Import from "apim-poc-1" Function App
   version: '1.0'
 servers:
-  - url: https://dev-apim-apiops-01.azure-api.net/ak-suffix
+  - url: https://dev-apim-apiops-01.azure-api.net/akash-suffix
 paths:
   /MyHttpFunction:
-    post:
+    get:
       summary: MyHttpFunction
-      description: MyHttpFunction
-      operationId: post-myhttpfunction
+      operationId: get-myhttpfunction
       responses:
         '200':
           description: ''
-    get:
+    post:
       summary: MyHttpFunction
-      description: MyHttpFunction
-      operationId: get-myhttpfunction
+      operationId: post-myhttpfunction
       responses:
         '200':
           description: ''
