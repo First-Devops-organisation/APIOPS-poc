@@ -7,15 +7,15 @@ servers:
   - url: https://dev-apim-apiops-01.azure-api.net/akash-suffix
 paths:
   /MyHttpFunction:
-    get:
-      summary: MyHttpFunction
-      operationId: get-myhttpfunction
-      responses:
-        '200':
-          description: ''
     post:
       summary: MyHttpFunction
       operationId: post-myhttpfunction
+      responses:
+        '200':
+          description: ''
+    get:
+      summary: MyHttpFunction
+      operationId: get-myhttpfunction
       responses:
         '200':
           description: ''
