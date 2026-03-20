@@ -9,10 +9,11 @@
     "protocols": [
       "https"
     ],
+    "serviceUrl": "https://dev-apim-apiops-01.azure-api.net/akash-suffix",
     "subscriptionKeyParameterNames": {
       "header": "Ocp-Apim-Subscription-Key",
       "query": "subscription-key"
     },
-    "subscriptionRequired": true
+    "subscriptionRequired": false
   }
 }
