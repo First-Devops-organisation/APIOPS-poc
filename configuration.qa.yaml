@@ -15,9 +15,9 @@ namedValues:
       keyVault:
         secretIdentifier: "https://qa-apim-apiops-01.vault.azure.net/secrets/testapim"
 
-  - name: backenid
+  - name: test22
     properties:
-      displayName: newtest
+      displayName: test22
       value: apim-poc-2
 
   - name: apimvar
