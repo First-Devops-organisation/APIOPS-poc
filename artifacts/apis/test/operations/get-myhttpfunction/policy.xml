@@ -1,7 +1,7 @@
 <policies>
 	<inbound>
 		<base />
-		<set-backend-service id="apim-generated-policy" backend-id="apim-poc-1" />
+		<set-backend-service base-url="https://apim-poc-1-f2atc3euhkfmgzcx.canadacentral-01.azurewebsites.net/api" />
 	</inbound>
 	<backend>
 		<base />

@@ -1,10 +1,10 @@
 openapi: 3.0.1
 info:
-  title: akash
+  title: test
   description: Import from "apim-poc-1" Function App
   version: '1.0'
 servers:
-  - url: https://dev-apim-apiops-01.azure-api.net/akash-suffix
+  - url: https://dev-apim-apiops-01.azure-api.net/test-suffix
 paths:
   /MyHttpFunction:
     post:

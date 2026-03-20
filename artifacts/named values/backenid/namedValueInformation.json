@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "displayName": "idofbackend",
+    "secret": false,
+    "tags": [],
+    "value": "apim-poc-1"
+  }
+}

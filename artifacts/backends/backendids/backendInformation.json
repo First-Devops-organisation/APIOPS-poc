@@ -1,0 +1,15 @@
+{
+  "properties": {
+    "credentials": {
+      "header": {},
+      "query": {}
+    },
+    "protocol": "http",
+    "tls": {
+      "validateCertificateChain": true,
+      "validateCertificateName": true
+    },
+    "type": "Single",
+    "url": "https://apim-poc-1-f2atc3euhkfmgzcx.canadacentral-01.azurewebsites.net/api"
+  }
+}

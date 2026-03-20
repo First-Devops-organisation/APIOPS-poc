@@ -1,11 +1,11 @@
 {
   "properties": {
-    "path": "akash-suffix",
+    "path": "test-suffix",
     "apiRevision": "1",
     "authenticationSettings": {},
     "description": "Import from \u0022apim-poc-1\u0022 Function App",
     "isCurrent": true,
-    "displayName": "akash",
+    "displayName": "test",
     "protocols": [
       "https"
     ],
