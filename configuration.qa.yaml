@@ -2,10 +2,6 @@ apimServiceName: qa-apim-env-01
 namedValues:
   - name: apim-poc-1-key
     properties:
-      value: "qa"
-
-  - name: apim-poc-2-key
-    properties:
       value: "m+tdP+XuDsaUKrwxAk+zFWlzbq3KwQ7A/bJaVU703PRWHEU8zu6BpA=="
 
   - name: testget
@@ -57,7 +53,7 @@ backends:
 apis:
   - name: test # The API ID in APIM
     properties:
-      serviceUrl: https://qa-apim-apiops-01.azure-api.net/apim-poc-2  # The QA Backend URL
+      serviceUrl: https://qa-apim-env-01.azure-api.net/apim-poc-2  # The QA Backend URL
 # apis:
 #   - name: apim-poc-1
 #     properties:
