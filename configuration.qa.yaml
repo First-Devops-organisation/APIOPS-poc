@@ -4,7 +4,7 @@ namedValues:
   - name: environment
     properties:
       displayName: environment
-      value: "https://www.search2.com"
+      value: "https://www.qa.com"
 
   - name: apim-poc-1-key
     properties:
