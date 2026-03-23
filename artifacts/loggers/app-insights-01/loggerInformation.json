@@ -1,0 +1,10 @@
+{
+  "properties": {
+    "loggerType": "applicationInsights",
+    "credentials": {
+      "instrumentationKey": "{{Logger-Credentials--69c152f1463461144c867dd6}}"
+    },
+    "isBuffered": true,
+    "resourceId": "/subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless/providers/microsoft.insights/components/app-insights-01"
+  }
+}

@@ -9,6 +9,7 @@
     "protocols": [
       "https"
     ],
+    "serviceUrl": "https://dev-apim-env-01.azure-api.net/testsuffix",
     "subscriptionKeyParameterNames": {
       "header": "Ocp-Apim-Subscription-Key",
       "query": "subscription-key"
