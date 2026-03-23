@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "displayName": "apimfunc",
+    "secret": false,
+    "tags": [],
+    "value": "devfun"
+  }
+}
