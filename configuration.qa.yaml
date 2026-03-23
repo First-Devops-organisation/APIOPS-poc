@@ -54,14 +54,8 @@ apis:
   - name: test # The API ID in APIM
     properties:
       serviceUrl: https://qa-apim-env-01.azure-api.net/apim-poc-2  # The QA Backend URL
-# apis:
-#   - name: apim-poc-1
-#     properties:
-#       displayName: "apim-poc-1"
-#       path: "apim-poc-1"
-#       protocols:
-#         - https
-#       # Leave serviceUrl unset when using <set-backend-service backend-id="...">
+      protocols:
+        - https
     policies:
       inbound: |
         <policies>
