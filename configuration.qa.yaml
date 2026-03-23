@@ -4,26 +4,26 @@ namedValues:
     properties:
       value: "m+tdP+XuDsaUKrwxAk+zFWlzbq3KwQ7A/bJaVU703PRWHEU8zu6BpA=="
 
-  - name: testget
-    properties:
-      displayName: testget
-      value: https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net/api
+  # - name: testget
+  #   properties:
+  #     displayName: testget
+  #     value: https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net/api
 
-  - name: test
-    properties:
-      secret: true
-      keyVault:
-        secretIdentifier: "https://qa-apim-env-01.vault.azure.net/secrets/testapim"
+  # - name: test
+  #   properties:
+  #     secret: true
+  #     keyVault:
+  #       secretIdentifier: "https://qa-apim-env-01.vault.azure.net/secrets/testapim"
 
-  - name: test22
-    properties:
-      displayName: test22
-      value: apim-poc-2
+  # - name: test22
+  #   properties:
+  #     displayName: test22
+  #     value: apim-poc-2
 
-  - name: apimvar
-    properties:
-      displayName: apimvar
-      value: https://qa-apim-env-01.azure-api.net/apim-poc-2
+  # - name: apimvar
+  #   properties:
+  #     displayName: apimvar
+  #     value: https://qa-apim-env-01.azure-api.net/apim-poc-2
 
   - name: apimfunc
     properties:
@@ -43,16 +43,16 @@ loggers:
       credentials:
         instrumentationKey: "3995e52e-687f-453b-8f9c-df1ef605c4de"
       isBuffered: true
-# diagnostics:
+diagnostics:
 backends:
-  - name: apim-poc-2
+  - name: apim-poc-1
     properties:
       url: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net/api"
       resourceId: "/subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/Microsoft.Web/sites/apim-poc-2"
-      credentials:
-        header:
-          "x-functions-key":
-            - "{{apim-poc-2-key}}"
+      # credentials:
+      #   header:
+      #     "x-functions-key":
+      #       - "{{apim-poc-2-key}}"
 
 apis:
   - name: test # The API ID in APIM
