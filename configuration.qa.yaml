@@ -1,8 +1,12 @@
-apimServiceName: qa-apim-apiops-01
+apimServiceName: qa-apim-env-01
 namedValues:
   - name: apim-poc-1-key
     properties:
       value: "qa"
+
+  - name: apim-poc-2-key
+    properties:
+      value: "m+tdP+XuDsaUKrwxAk+zFWlzbq3KwQ7A/bJaVU703PRWHEU8zu6BpA=="
 
   - name: testget
     properties:
