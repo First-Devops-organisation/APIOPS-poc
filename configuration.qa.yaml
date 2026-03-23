@@ -52,7 +52,7 @@ backends:
       credentials:
         header:
           "x-functions-key":
-            - "{{apim-poc-2-key}}"
+            - "{{apim-poc-1-key}}"
 
 apis:
   - name: test # The API ID in APIM
