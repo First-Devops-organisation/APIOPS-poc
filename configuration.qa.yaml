@@ -1,7 +1,13 @@
 apimServiceName: qa-apim-env-01
 namedValues:
+  - name: environment
+    properties:
+      displayName: environment
+      value: "https://www.search2.com"
+
   - name: apim-poc-1-key
     properties:
+      displayName: key
       value: "m+tdP+XuDsaUKrwxAk+zFWlzbq3KwQ7A/bJaVU703PRWHEU8zu6BpA=="
 
   - name: apimfunc
