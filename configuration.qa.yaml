@@ -13,7 +13,7 @@ namedValues:
     properties:
       secret: true
       keyVault:
-        secretIdentifier: "https://qa-apim-apiops-01.vault.azure.net/secrets/testapim"
+        secretIdentifier: "https://qa-apim-env-01.vault.azure.net/secrets/testapim"
 
   - name: test22
     properties:
