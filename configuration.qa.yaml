@@ -4,6 +4,11 @@ namedValues:
     properties:
       value: "m+tdP+XuDsaUKrwxAk+zFWlzbq3KwQ7A/bJaVU703PRWHEU8zu6BpA=="
 
+  - name: apimfunc
+    properties:
+      displayName: apimfuncurl
+      value: "qa"
+
   # - name: testget
   #   properties:
   #     displayName: testget
@@ -25,10 +30,10 @@ namedValues:
   #     displayName: apimvar
   #     value: https://qa-apim-env-01.azure-api.net/apim-poc-2
 
-  - name: apimfunc
-    properties:
-      displayName: apimfuncurl
-      value: https://qa-apim-env-01.azure-api.net/apim-poc-2
+  # - name: apimfunc
+  #   properties:
+  #     displayName: apimfuncurl
+  #     value: https://qa-apim-env-01.azure-api.net/apim-poc-2
 
 
   # - name: dev-test-apim-nv
