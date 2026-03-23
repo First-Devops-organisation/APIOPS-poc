@@ -1,16 +1,7 @@
-# =========================
-# QA Environment APIM Config
-# =========================
-# Target APIM instance for QA
 apimServiceName: qa-apim-env-01
-
-# -------------------------
-# Named Values (QA scope)
-# -------------------------
 namedValues:
   - name: apim-poc-1-key
     properties:
-      displayName: apim-poc-1-key
       value: "m+tdP+XuDsaUKrwxAk+zFWlzbq3KwQ7A/bJaVU703PRWHEU8zu6BpA=="
 
   - name: testget
@@ -20,10 +11,8 @@ namedValues:
 
   - name: test
     properties:
-      displayName: test
       secret: true
       keyVault:
-        # Ensure APIM (system/user-managed identity) has get permission on this secret
         secretIdentifier: "https://qa-apim-env-01.vault.azure.net/secrets/testapim"
 
   - name: test22
@@ -41,11 +30,12 @@ namedValues:
       displayName: apimfuncurl
       value: https://qa-apim-env-01.azure-api.net/apim-poc-2
 
-# -------------------------
-# Loggers (QA)
-# -------------------------
+
+  # - name: dev-test-apim-nv
+  #   properties:
+  #     value: "ttttt"
 loggers:
-  - name: app-insights-01
+  - name: app-insights-01            # MUST match the Dev logger name extracted
     properties:
       loggerType: applicationInsights
       description: "QA Application Insights"
@@ -53,64 +43,47 @@ loggers:
       credentials:
         instrumentationKey: "3995e52e-687f-453b-8f9c-df1ef605c4de"
       isBuffered: true
-
-# -------------------------
-# Diagnostics (optional)
-# Uncomment if you want API-level diagnostics wired to the logger above.
-# -------------------------
 # diagnostics:
-#   - name: applicationinsights
-#     properties:
-#       verbosity: Error
-#       loggerId: "/subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/Microsoft.ApiManagement/service/qa-apim-env-01/loggers/app-insights-01"
-
-# -------------------------
-# Backends (QA)
-# -------------------------
 backends:
   - name: apim-poc-2
     properties:
-      # Origin URL of the Function/App Service — NOT the APIM gateway URL
       url: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net/api"
-      # ARM resource ID of the backend app
       resourceId: "/subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/Microsoft.Web/sites/apim-poc-2"
-      # Optional: If your backend requires static headers or auth, uncomment and set:
-      # credentials:
-      #   header:
-      #     "x-functions-key": [ "{#functionKeyNamedValue#}" ]
 
-# -------------------------
-# APIs (QA)
-# -------------------------
 apis:
-  - name: test
+  - name: test # The API ID in APIM
     properties:
-      # Do NOT set serviceUrl when using backend entity + set-backend-service.
-      # serviceUrl:
+      serviceUrl: https://qa-apim-env-01.azure-api.net/test-suffix  # The QA Backend URL
       protocols:
         - https
-    # API-level policy (raw XML, not HTML-escaped)
     policies:
       inbound: |
         <policies>
+          <!-- Throttle, authorize, validate, cache, or transform the requests -->
           <inbound>
             <base />
-            <!-- Route requests to the QA backend entity -->
+            <!-- Route to the QA backend via backend entity -->
             <set-backend-service backend-id="apim-poc-2" />
           </inbound>
+          <!-- Control if and how the requests are forwarded to services -->
           <backend>
             <base />
           </backend>
+          <!-- Customize the responses -->
           <outbound>
             <base />
           </outbound>
+          <!-- Handle exceptions and customize error responses -->
           <on-error>
             <base />
           </on-error>
         </policies>
-    # Optional: If you want diagnostics per API
-    # diagnostics:
-    #   - name: applicationinsights
-    #     properties:
-    #       verbosity: Error
-    #       loggerId: "/subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/Microsoft.ApiManagement/service/qa-apim-env-01/loggers/app-insights-01"
+
+# apis:
+#   - name: apim-poc-1
+#     displayName: apim-poc-1
+#     description: "Orders QA API"
+#     path: orders
+#     serviceUrl: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net"
+#     protocols:
+#       - https
