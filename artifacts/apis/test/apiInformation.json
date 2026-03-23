@@ -1,6 +1,6 @@
 {
   "properties": {
-    "path": "test-suffix",
+    "path": "testsuffix",
     "apiRevision": "1",
     "authenticationSettings": {},
     "description": "Import from \u0022apim-poc-1\u0022 Function App",

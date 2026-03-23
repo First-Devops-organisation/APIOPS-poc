@@ -4,7 +4,7 @@ info:
   description: Import from "apim-poc-1" Function App
   version: '1.0'
 servers:
-  - url: https://dev-apim-env-01.azure-api.net/test-suffix
+  - url: https://dev-apim-env-01.azure-api.net/testsuffix
 paths:
   /MyHttpFunction:
     get:
