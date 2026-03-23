@@ -62,28 +62,28 @@ apis:
 #       protocols:
 #         - https
 #       # Leave serviceUrl unset when using <set-backend-service backend-id="...">
-#     policies:
-#       inbound: |
-#         <policies>
-#           <!-- Throttle, authorize, validate, cache, or transform the requests -->
-#           <inbound>
-#             <base />
-#             <!-- Route to the QA backend via backend entity -->
-#             <set-backend-service backend-id="apim-poc-2" />
-#           </inbound>
-#           <!-- Control if and how the requests are forwarded to services -->
-#           <backend>
-#             <base />
-#           </backend>
-#           <!-- Customize the responses -->
-#           <outbound>
-#             <base />
-#           </outbound>
-#           <!-- Handle exceptions and customize error responses -->
-#           <on-error>
-#             <base />
-#           </on-error>
-#         </policies>
+    policies:
+      inbound: |
+        <policies>
+          <!-- Throttle, authorize, validate, cache, or transform the requests -->
+          <inbound>
+            <base />
+            <!-- Route to the QA backend via backend entity -->
+            <set-backend-service backend-id="apim-poc-2" />
+          </inbound>
+          <!-- Control if and how the requests are forwarded to services -->
+          <backend>
+            <base />
+          </backend>
+          <!-- Customize the responses -->
+          <outbound>
+            <base />
+          </outbound>
+          <!-- Handle exceptions and customize error responses -->
+          <on-error>
+            <base />
+          </on-error>
+        </policies>
 
 # apis:
 #   - name: apim-poc-1
