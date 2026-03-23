@@ -1,6 +1,6 @@
 apimServiceName: qa-apim-env-01
 namedValues:
-  - name: apim-poc-1-key
+  - name: apim-poc-2-key
     properties:
       value: "m+tdP+XuDsaUKrwxAk+zFWlzbq3KwQ7A/bJaVU703PRWHEU8zu6BpA=="
 
@@ -52,7 +52,7 @@ backends:
       credentials:
         header:
           "x-functions-key":
-            - "{{apim-poc-1-key}}"
+            - "{{apim-poc-2-key}}"
 
 apis:
   - name: test # The API ID in APIM
@@ -60,28 +60,28 @@ apis:
       serviceUrl: https://qa-apim-env-01.azure-api.net/test-suffix  # The QA Backend URL
       protocols:
         - https
-    policies:
-      inbound: |
-        <policies>
-          <!-- Throttle, authorize, validate, cache, or transform the requests -->
-          <inbound>
-            <base />
-            <!-- Route to the QA backend via backend entity -->
-            <set-backend-service backend-id="apim-poc-2" />
-          </inbound>
-          <!-- Control if and how the requests are forwarded to services -->
-          <backend>
-            <base />
-          </backend>
-          <!-- Customize the responses -->
-          <outbound>
-            <base />
-          </outbound>
-          <!-- Handle exceptions and customize error responses -->
-          <on-error>
-            <base />
-          </on-error>
-        </policies>
+    # policies:
+    #   inbound: |
+    #     <policies>
+    #       <!-- Throttle, authorize, validate, cache, or transform the requests -->
+    #       <inbound>
+    #         <base />
+    #         <!-- Route to the QA backend via backend entity -->
+    #         <set-backend-service backend-id="apim-poc-2" />
+    #       </inbound>
+    #       <!-- Control if and how the requests are forwarded to services -->
+    #       <backend>
+    #         <base />
+    #       </backend>
+    #       <!-- Customize the responses -->
+    #       <outbound>
+    #         <base />
+    #       </outbound>
+    #       <!-- Handle exceptions and customize error responses -->
+    #       <on-error>
+    #         <base />
+    #       </on-error>
+    #     </policies>
 
 # apis:
 #   - name: apim-poc-1
