@@ -48,7 +48,7 @@ backends:
   - name: apim-poc-2
     properties:
       url: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net/api"
-      resourceId: /subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/Microsoft.Web/sites/apim-poc-2
+      resourceId: "/subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/Microsoft.Web/sites/apim-poc-2"
 
 apis:
   - name: test # The API ID in APIM
