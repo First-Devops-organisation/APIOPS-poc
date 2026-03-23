@@ -53,7 +53,7 @@ backends:
 apis:
   - name: test # The API ID in APIM
     properties:
-      serviceUrl: https://qa-apim-env-01.azure-api.net/apim-poc-2  # The QA Backend URL
+      serviceUrl: https://qa-apim-env-01.azure-api.net/test-suffix  # The QA Backend URL
       protocols:
         - https
     policies:
