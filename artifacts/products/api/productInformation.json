@@ -1,9 +1,0 @@
-{
-  "properties": {
-    "displayName": "api",
-    "description": "testing",
-    "approvalRequired": false,
-    "state": "published",
-    "subscriptionRequired": true
-  }
-}
