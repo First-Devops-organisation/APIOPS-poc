@@ -16,12 +16,17 @@ namedValues:
       displayName: apimfuncurl
       value: "qa"
 
-
   - name: keyvault
     properties:
       secret: true
       keyVault:
         secretIdentifier: "https://qa-apim-01.vault.azure.net/secrets/testapim"
+
+  - name: kvvnet
+    properties:
+      secret: true
+      keyVault:
+        secretIdentifier: "https://qa-kv-vnet01.vault.azure.net/secrets/testvnet"
 
 loggers:
   - name: app-insights-01            # MUST match the Dev logger name extracted
@@ -45,34 +50,3 @@ apis:
       serviceUrl: https://qa-apim-env-01.azure-api.net/test-suffix  # The QA Backend URL
       protocols:
         - https
-    # policies:
-    #   inbound: |
-    #     <policies>
-    #       <!-- Throttle, authorize, validate, cache, or transform the requests -->
-    #       <inbound>
-    #         <base />
-    #         <!-- Route to the QA backend via backend entity -->
-    #         <set-backend-service backend-id="apim-poc-2" />
-    #       </inbound>
-    #       <!-- Control if and how the requests are forwarded to services -->
-    #       <backend>
-    #         <base />
-    #       </backend>
-    #       <!-- Customize the responses -->
-    #       <outbound>
-    #         <base />
-    #       </outbound>
-    #       <!-- Handle exceptions and customize error responses -->
-    #       <on-error>
-    #         <base />
-    #       </on-error>
-    #     </policies>
-
-# apis:
-#   - name: apim-poc-1
-#     displayName: apim-poc-1
-#     description: "Orders QA API"
-#     path: orders
-#     serviceUrl: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net"
-#     protocols:
-#       - https
