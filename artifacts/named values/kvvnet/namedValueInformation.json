@@ -1,0 +1,10 @@
+{
+  "properties": {
+    "displayName": "kvvnet",
+    "keyVault": {
+      "secretIdentifier": "https://kv-vnet01.vault.azure.net/secrets/testvnet"
+    },
+    "secret": true,
+    "tags": []
+  }
+}
