@@ -16,6 +16,12 @@ namedValues:
       displayName: apimfuncurl
       value: "qa"
 
+
+  - name: keyvault
+    properties:
+      secret: true
+      keyVault:
+        secretIdentifier: "https://qa-apim-01.vault.azure.net/secrets/testapim"
   # - name: testget
   #   properties:
   #     displayName: testget
