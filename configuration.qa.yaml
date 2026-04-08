@@ -29,15 +29,16 @@ namedValues:
         secretIdentifier: "https://qa-kv-vnet01.vault.azure.net/secrets/testvnet"
 
 loggers:
-  - name: app-insights-01            # MUST match the Dev logger name extracted
+  - name: appi-apim-qa-01            # MUST match the Dev logger name extracted
     properties:
       loggerType: applicationInsights
       description: "QA Application Insights"
-      resourceId: "/subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/microsoft.insights/components/app-insights-01"
+      resourceId: "/subscriptions/fd39c7a6-bc2c-4b89-97d5-1e60d7f98aef/resourceGroups/RG-Serverless1/providers/Microsoft.ApiManagement/service/apim-qa-01-env/loggers/appi-apim-qa-01"
       credentials:
-        instrumentationKey: "3995e52e-687f-453b-8f9c-df1ef605c4de"
+        instrumentationKey: "9f00368b-d1a2-4cce-8414-e8d1f9c9fe70"
       isBuffered: true
-# diagnostics:
+diagnostics:
+
 backends:
   - name: apim-poc-1
     properties:
