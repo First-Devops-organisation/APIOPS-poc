@@ -11,7 +11,7 @@ diagnosticNames:
   - applicationinsights
 
 loggerNames:
-  - it-apim-01-dev-appi-usc1-00
+  - appi-apim-dev-01
 
 productNames:
   - none
