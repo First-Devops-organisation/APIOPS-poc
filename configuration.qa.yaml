@@ -1,4 +1,4 @@
-apimServiceName: qa-apim-env-01
+apimServiceName: apim-qa-01-env
 
 namedValues:
   - name: environment
