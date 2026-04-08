@@ -1,6 +1,6 @@
 {
   "properties": {
-    "path": "hello-suffix",
+    "path": "",
     "apiRevision": "1",
     "authenticationSettings": {},
     "description": "A simple API that returns a greeting.",

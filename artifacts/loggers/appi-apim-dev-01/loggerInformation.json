@@ -1,0 +1,10 @@
+{
+  "properties": {
+    "loggerType": "applicationInsights",
+    "credentials": {
+      "instrumentationKey": "{{Logger-Credentials--69d5fa1b46346114cc7d8312}}"
+    },
+    "isBuffered": true,
+    "resourceId": "/subscriptions/fd39c7a6-bc2c-4b89-97d5-1e60d7f98aef/resourceGroups/RG-Serverless/providers/microsoft.insights/components/appi-apim-dev-01"
+  }
+}
