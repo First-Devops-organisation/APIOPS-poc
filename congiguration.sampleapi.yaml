@@ -1,0 +1,32 @@
+apiNames:
+  - hello-world-api
+
+namedValueNames:
+  - helloworld
+
+backendNames:
+  - hellobackend
+
+diagnosticNames:
+  - applicationinsights
+
+loggerNames:
+  - it-apim-01-dev-appi-usc1-00
+
+productNames:
+  - none
+
+subscriptionNames:
+  - none
+
+tagNames:
+  - none
+
+policyFragmentNames:
+  - none
+
+versionSetNames:
+  - none
+
+groupNames:
+  - none
