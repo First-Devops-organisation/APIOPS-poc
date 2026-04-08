@@ -39,6 +39,7 @@ parameters:
       - configuration.extractor.time-mgmt-strategy.yaml
       - configuration.extractor.echo.yaml
       - configuration.extractor.yaml
+      - congiguration.sampleapi.yaml
   - name: API_SPECIFICATION_FORMAT
     type: string
     displayName: API Specification Format
