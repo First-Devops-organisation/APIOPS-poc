@@ -16,20 +16,20 @@ namedValues:
       displayName: apimfuncurl
       value: "qa"
 
-  - name: keyvault
-    properties:
-      secret: true
-      keyVault:
-        secretIdentifier: "https://qa-apim-01.vault.azure.net/secrets/testapim"
+  # - name: keyvault
+  #   properties:
+  #     secret: true
+  #     keyVault:
+  #       secretIdentifier: "https://qa-apim-01.vault.azure.net/secrets/testapim"
 
-  - name: kvvnet
-    properties:
-      secret: true
-      keyVault:
-        secretIdentifier: "https://qa-kv-vnet01.vault.azure.net/secrets/testvnet"
+  # - name: kvvnet
+  #   properties:
+  #     secret: true
+  #     keyVault:
+  #       secretIdentifier: "https://qa-kv-vnet01.vault.azure.net/secrets/testvnet"
 
 loggers:
-  - name: appi-apim-qa-01            # MUST match the Dev logger name extracted
+  - name: appi-apim-dev-01            # MUST match the Dev logger name extracted
     properties:
       loggerType: applicationInsights
       description: "QA Application Insights"
