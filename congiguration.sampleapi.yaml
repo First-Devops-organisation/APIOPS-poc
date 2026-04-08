@@ -2,10 +2,10 @@ apiNames:
   - hello-world-api
 
 namedValueNames:
-  - helloworld
+  - none
 
 backendNames:
-  - hellobackend
+  - none
 
 diagnosticNames:
   - applicationinsights
