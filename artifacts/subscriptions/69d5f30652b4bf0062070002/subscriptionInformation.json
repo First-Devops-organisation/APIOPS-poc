@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "scope": "/subscriptions/fd39c7a6-bc2c-4b89-97d5-1e60d7f98aef/resourceGroups/RG-Serverless/providers/Microsoft.ApiManagement/service/apim-dev-01-env/products/unlimited",
+    "allowTracing": false,
+    "ownerId": "/subscriptions/fd39c7a6-bc2c-4b89-97d5-1e60d7f98aef/resourceGroups/RG-Serverless/providers/Microsoft.ApiManagement/service/apim-dev-01-env/users/1",
+    "state": "active"
+  }
+}
