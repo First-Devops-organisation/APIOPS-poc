@@ -10,6 +10,7 @@ backendNames:
 
 diagnosticNames:
   - applicationinsights
+  - azuremonitor
 
 loggerNames:
   - appi-apim-dev-01
