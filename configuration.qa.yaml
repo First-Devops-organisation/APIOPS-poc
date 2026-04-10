@@ -50,7 +50,7 @@ diagnostics:
 
   - name: azuremonitor                 # Must match the extracted diagnostic folder name
     properties:
-      loggerId: "/subscriptions/fd39c7a6-bc2c-4b89-97d5-1e60d7f98aef/resourceGroups/RG-Serverless1/providers/Microsoft.ApiManagement/service/apim-qa-01-env/loggers/appi-apim-dev-01"
+      loggerId: "/subscriptions/fd39c7a6-bc2c-4b89-97d5-1e60d7f98aef/resourceGroups/RG-Serverless1/providers/Microsoft.ApiManagement/service/apim-qa-01-env/loggers/azuremonitor"
 
 
 
