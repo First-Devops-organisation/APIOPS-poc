@@ -16,11 +16,11 @@ namedValues:
   #     displayName: apimfuncurl
   #     value: "qa"
 
-  # - name: Logger-Credentials--69d5fa1b46346114cc7d8312
-  #   properties:
-  #     displayName: Logger-Credentials--69d5fa1b46346114cc7d8312
-  #     secret: true
-  #     value: "9f00368b-d1a2-4cce-8414-e8d1f9c9fe70"
+  - name: 69d8cd7f4634611a8c6d5fa5
+    properties:
+      displayName: Logger-Credentials--69d8cd7f4634611a8c6d5fa6
+      secret: true
+      value: "9f00368b-d1a2-4cce-8414-e8d1f9c9fe70"
       
   # - name: keyvault
   #   properties:
