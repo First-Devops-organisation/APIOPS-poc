@@ -1,20 +1,20 @@
 apimServiceName: apim-qa-01-env
 
 namedValues:
-  - name: environment
-    properties:
-      displayName: environment
-      value: "https://www.qa.com"
+  # - name: environment
+  #   properties:
+  #     displayName: environment
+  #     value: "https://www.qa.com"
 
-  - name: apim-poc-1-key
-    properties:
-      displayName: key
-      value: "m+tdP+XuDsaUKrwxAk+zFWlzbq3KwQ7A/bJaVU703PRWHEU8zu6BpA=="
+  # - name: apim-poc-1-key
+  #   properties:
+  #     displayName: key
+  #     value: "m+tdP+XuDsaUKrwxAk+zFWlzbq3KwQ7A/bJaVU703PRWHEU8zu6BpA=="
 
-  - name: apimfunc
-    properties:
-      displayName: apimfuncurl
-      value: "qa"
+  # - name: apimfunc
+  #   properties:
+  #     displayName: apimfuncurl
+  #     value: "qa"
 
   # - name: Logger-Credentials--69d5fa1b46346114cc7d8312
   #   properties:
@@ -54,15 +54,15 @@ diagnostics:
 
 
 
-backends:
-  - name: apim-poc-1
-    properties:
-      url: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net/api"
-      resourceId: "https://management.azure.com//subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/Microsoft.Web/sites/apim-poc-2"
+# backends:
+#   - name: apim-poc-1
+#     properties:
+#       url: "https://apim-poc-2-b2bfa7gnanewc3g6.canadacentral-01.azurewebsites.net/api"
+#       resourceId: "https://management.azure.com//subscriptions/ad22728c-05c5-4237-8488-3a1351058afb/resourceGroups/RG-Serverless1/providers/Microsoft.Web/sites/apim-poc-2"
 
-apis:
-  - name: test # The API ID in APIM
-    properties:
-      serviceUrl: https://qa-apim-env-01.azure-api.net/test-suffix  # The QA Backend URL
-      protocols:
-        - https
+# apis:
+#   - name: test # The API ID in APIM
+#     properties:
+#       serviceUrl: https://qa-apim-env-01.azure-api.net/test-suffix  # The QA Backend URL
+#       protocols:
+#         - https
