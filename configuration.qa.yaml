@@ -35,7 +35,7 @@ namedValues:
   #       secretIdentifier: "https://qa-kv-vnet01.vault.azure.net/secrets/testvnet"
 
 loggers:
-  - name: appi-apim-dev-01            # MUST match the Dev logger name extracted
+  - name: appi-apim-qa-01            # MUST match the Dev logger name extracted
     properties:
       loggerType: applicationInsights
       description: "QA Application Insights"
