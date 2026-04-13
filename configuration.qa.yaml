@@ -16,7 +16,7 @@ namedValues:
   #     displayName: apimfuncurl
   #     value: "qa"
 
-  - name: 69d5fa1b46346114cc7d8312
+  - name: 69d5fa1b46346114cc7d8311
     properties:
       displayName: Logger-Credentials--69d5fa1b46346114cc7d8312
       secret: true
@@ -35,7 +35,7 @@ namedValues:
   #       secretIdentifier: "https://qa-kv-vnet01.vault.azure.net/secrets/testvnet"
 
 loggers:
-  - name: appi-apim-qa-01            # MUST match the Dev logger name extracted
+  - name: appi-apim-dev-01            # MUST match the Dev logger name extracted
     properties:
       loggerType: applicationInsights
       description: "QA Application Insights"
