@@ -44,14 +44,14 @@ loggers:
         instrumentationKey: "{{Logger-Credentials--69d5fa1b46346114cc7d8312}}"
       isBuffered: true
       
-# diagnostics:
-#   - name: applicationinsights          # Must match the extracted diagnostic folder name
-#     properties:
-#       loggerId: "/subscriptions/fd39c7a6-bc2c-4b89-97d5-1e60d7f98aef/resourceGroups/RG-Serverless1/providers/Microsoft.ApiManagement/service/apim-qa-01-env/loggers/appi-apim-dev-01"
+diagnostics:
+  - name: applicationinsights          # Must match the extracted diagnostic folder name
+    properties:
+      loggerId: "/subscriptions/fd39c7a6-bc2c-4b89-97d5-1e60d7f98aef/resourceGroups/RG-Serverless1/providers/Microsoft.ApiManagement/service/apim-qa-01-env/loggers/appi-apim-dev-01"
 
-#   - name: azuremonitor                 # Must match the extracted diagnostic folder name
-#     properties:
-#       loggerId: "/subscriptions/fd39c7a6-bc2c-4b89-97d5-1e60d7f98aef/resourceGroups/RG-Serverless1/providers/Microsoft.ApiManagement/service/apim-qa-01-env/loggers/azuremonitor"
+  - name: azuremonitor                 # Must match the extracted diagnostic folder name
+    properties:
+      loggerId: "/subscriptions/fd39c7a6-bc2c-4b89-97d5-1e60d7f98aef/resourceGroups/RG-Serverless1/providers/Microsoft.ApiManagement/service/apim-qa-01-env/loggers/azuremonitor"
 
 
 
