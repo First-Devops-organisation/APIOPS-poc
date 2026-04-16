@@ -3,17 +3,16 @@ apiNames:
   - echo-api
 
 namedValueNames:
-  - 69d5fa1b46346114cc7d8311            ##LOgger entry
+  - none           ##LOgger entry
 
 backendNames:
   - none
 
 diagnosticNames:
-  - applicationinsights
-  - azuremonitor
+  - none
 
 loggerNames:
-  - appi-apim-dev-01
+  - none
 
 productNames:
   - none
