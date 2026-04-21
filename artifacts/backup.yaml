@@ -1,22 +1,28 @@
 # run-apim-backup.yaml
+# Manual trigger for testing. Add scheduled trigger after validation.
 trigger: none
 
-# schedules:
-#   - cron: "0 0 * * 0"          # Every Sunday at midnight UTC
-#     displayName: Weekly APIM Backup
-#     branches:
-#       include:
-#         - dev
-#     always: true
+parameters:
+  - name: APIM_INSTANCE_NAME
+    displayName: APIM Instance Name to Backup
+    type: string
+    default: it-01-dev-apim-usc1-00
+  - name: RESOURCE_GROUP_NAME
+    displayName: Resource Group Name
+    type: string
+    default: apim_01_dev_rg_usc1-00
 
 variables:
   - group: apim-automation
+  - name: System.Debug
+    value: true
 
 stages:
   - stage: backup_dev_apim
     displayName: Backup Dev APIM
     jobs:
       - job: backup
+        displayName: Create APIM Backup
         pool:
           vmImage: ubuntu-latest
         steps:
@@ -27,15 +33,52 @@ stages:
               scriptType: bash
               scriptLocation: inlineScript
               inlineScript: |
+                set -e
+
                 BACKUP_NAME="apim-backup-$(date +%Y%m%d-%H%M%S)"
-                echo "Creating backup: $BACKUP_NAME"
+                echo "============================================"
+                echo "APIM Backup Configuration"
+                echo "============================================"
+                echo "APIM Instance    : ${{ parameters.APIM_INSTANCE_NAME }}"
+                echo "Resource Group   : ${{ parameters.RESOURCE_GROUP_NAME }}"
+                echo "Storage Account  : $(BACKUP_STORAGE_ACCOUNT)"
+                echo "Container        : apim-backups"
+                echo "Backup Name      : $BACKUP_NAME"
+                echo "============================================"
+
+                # Retrieve storage account key
+                echo "Retrieving storage account key..."
+                STORAGE_KEY=$(az storage account keys list \
+                  --account-name "$(BACKUP_STORAGE_ACCOUNT)" \
+                  --query '[0].value' -o tsv)
+
+                # Ensure the backup container exists
+                echo "Ensuring backup container exists..."
+                az storage container create \
+                  --name "apim-backups" \
+                  --account-name "$(BACKUP_STORAGE_ACCOUNT)" \
+                  --account-key "$STORAGE_KEY" \
+                  --only-show-errors || true
+
+                # Create the APIM backup
+                echo "Creating APIM backup..."
                 az apim backup \
-                  --name "$(APIM_NAME)" \
-                  --resource-group "$(RESOURCE_GROUP_NAME)" \
+                  --name "${{ parameters.APIM_INSTANCE_NAME }}" \
+                  --resource-group "${{ parameters.RESOURCE_GROUP_NAME }}" \
                   --backup-name "$BACKUP_NAME" \
                   --storage-account-name "$(BACKUP_STORAGE_ACCOUNT)" \
                   --storage-account-container "apim-backups" \
-                  --storage-account-key "$(az storage account keys list \
-                      --account-name $(BACKUP_STORAGE_ACCOUNT) \
-                      --query '[0].value' -o tsv)"
-                echo "Backup completed: $BACKUP_NAME"
+                  --storage-account-key "$STORAGE_KEY"
+
+                echo "============================================"
+                echo "Backup completed successfully: $BACKUP_NAME"
+                echo "============================================"
+
+                # List existing backups in the container
+                echo "Existing backups:"
+                az storage blob list \
+                  --container-name "apim-backups" \
+                  --account-name "$(BACKUP_STORAGE_ACCOUNT)" \
+                  --account-key "$STORAGE_KEY" \
+                  --query "[].{Name:name, Size:properties.contentLength, LastModified:properties.lastModified}" \
+                  --output table
