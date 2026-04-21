@@ -6,11 +6,11 @@ parameters:
   - name: APIM_INSTANCE_NAME
     displayName: APIM Instance Name to Backup
     type: string
-    default: it-01-dev-apim-usc1-00
+    default: apim-dev-01-env
   - name: RESOURCE_GROUP_NAME
     displayName: Resource Group Name
     type: string
-    default: apim_01_dev_rg_usc1-00
+    default: RG-Serverless
 
 variables:
   - group: apim-automation
