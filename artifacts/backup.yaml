@@ -1,0 +1,41 @@
+# run-apim-backup.yaml
+trigger: none
+
+# schedules:
+#   - cron: "0 0 * * 0"          # Every Sunday at midnight UTC
+#     displayName: Weekly APIM Backup
+#     branches:
+#       include:
+#         - dev
+#     always: true
+
+variables:
+  - group: apim-automation
+
+stages:
+  - stage: backup_dev_apim
+    displayName: Backup Dev APIM
+    jobs:
+      - job: backup
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: AzureCLI@2
+            displayName: Create APIM Backup
+            inputs:
+              azureSubscription: "$(SERVICE_CONNECTION_NAME)"
+              scriptType: bash
+              scriptLocation: inlineScript
+              inlineScript: |
+                BACKUP_NAME="apim-backup-$(date +%Y%m%d-%H%M%S)"
+                echo "Creating backup: $BACKUP_NAME"
+                az apim backup \
+                  --name "$(APIM_NAME)" \
+                  --resource-group "$(RESOURCE_GROUP_NAME)" \
+                  --backup-name "$BACKUP_NAME" \
+                  --storage-account-name "$(BACKUP_STORAGE_ACCOUNT)" \
+                  --storage-account-container "apim-backups" \
+                  --storage-account-key "$(az storage account keys list \
+                      --account-name $(BACKUP_STORAGE_ACCOUNT) \
+                      --query '[0].value' -o tsv)"
+                echo "Backup completed: $BACKUP_NAME"
